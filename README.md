@@ -183,10 +183,10 @@ MIT License - Feel free to use this for personal or commercial projects
 
 ## 👨‍💻 Author
 
-Your Name
-your.email@example.com
+Harish
+harishbandarupalli56@gmail.com
 
 ---
 
-**Last Updated:** 2024
+**Last Updated:** 2026
 **Version:** 1.0.0
