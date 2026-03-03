@@ -28,6 +28,32 @@ Analyze, summarize, and extract insights from documents.
 - Generate structured reports
 - Compare and analyze multiple documents
 
+## 🎨 Web Interface
+
+You can now use the beautiful web interface!
+
+### Running the Web App
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+pip install streamlit
+
+# Make sure Ollama is running
+ollama serve
+
+# Run the web app (in another terminal)
+streamlit run streamlit_app.py
+```
+
+Then visit: `http://localhost:8501`
+
+**Features Available in Web App:**
+- AI Code Assistant (all 6 features)
+- Document Analyzer (all 6 features)
+- Beautiful, user-friendly interface
+- Real-time processing and results
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -54,30 +80,31 @@ pip install ollama
 # 4. Make sure Ollama is running
 ollama serve
 
-# 5. Run examples (in another terminal)
+# 5. Choose how to use:
+# Option A: Run web app (another terminal)
+streamlit run streamlit_app.py
+
+# Option B: Run examples
 python examples.py
-```
 
-### Running the Projects
-
-**Run all examples:**
-```bash
-python examples.py
-```
-
-**Run Code Assistant only:**
-```bash
+# Option C: Use command line
 python ai_code_assistant.py
-```
-
-**Run Document Analyzer only:**
-```bash
 python document_analyzer.py
 ```
 
 ## 💻 Usage Examples
 
-### Code Assistant Example
+### Using Web Interface (Recommended)
+
+1. Run: `streamlit run streamlit_app.py`
+2. Browser opens automatically
+3. Select application from sidebar
+4. Choose task and fill in details
+5. Click button and see results!
+
+### Using Command Line
+
+#### Code Assistant Example
 ```python
 from ai_code_assistant_ollama import AICodeAssistant
 
@@ -101,9 +128,17 @@ print(result["sections"]["EXPLANATION"])
 # Generate tests
 result = assistant.generate_tests(code)
 print(result["sections"]["TEST_CODE"])
+
+# Debug code
+result = assistant.debug_code(buggy_code, error_message)
+print(result["sections"]["FIXED_CODE"])
+
+# Code review
+result = assistant.code_review(code)
+print(result["sections"]["ISSUES"])
 ```
 
-### Document Analyzer Example
+#### Document Analyzer Example
 ```python
 from document_analyzer_ollama import DocumentAnalyzer
 
@@ -120,6 +155,18 @@ print(result["answer"])
 # Extract information
 result = analyzer.extract_key_information(document_content)
 print(result["extracted_data"])
+
+# Identify topics
+result = analyzer.identify_topics(document_content)
+print(result["topics"])
+
+# Generate report
+result = analyzer.generate_report(document_content)
+print(result["content"])
+
+# Compare documents
+result = analyzer.compare_documents(doc1, doc2)
+print(result["analysis"])
 ```
 
 ## ✨ Features
@@ -130,6 +177,8 @@ print(result["extracted_data"])
 - **Fast** - Optimized Mistral model
 - **Private** - Your data never leaves your computer
 - **Production Ready** - Clean, well-structured code
+- **Web Interface** - Beautiful Streamlit UI
+- **Multiple Interfaces** - CLI, Web, and Python API
 
 ## 🏗️ Architecture
 
@@ -138,6 +187,7 @@ print(result["extracted_data"])
 - Structured prompting for consistent outputs
 - Modular design for easy feature addition
 - Error handling throughout
+- Streamlit for web interface
 
 ## 📊 Performance
 
@@ -148,13 +198,16 @@ print(result["extracted_data"])
 | Summarize Document | 10-15 sec | Very Good |
 | Answer Question | 10-15 sec | Very Good |
 
-## 📝 File Structure
+**Note:** First request takes longer (20-30 sec) as the model loads. Subsequent requests are faster (10-15 sec).
+
+## 📁 File Structure
 
 ```
 llm-portfolio-projects/
 ├── ai_code_assistant_ollama.py     Code generation system
 ├── document_analyzer_ollama.py     Document analysis system
 ├── examples_ollama.py              Usage examples
+├── streamlit_app.py                Web interface
 ├── requirements.txt                Python dependencies
 ├── README.md                       This file
 ├── .gitignore                      Git ignore rules
@@ -164,10 +217,28 @@ llm-portfolio-projects/
 ## 🔐 Setup Notes
 
 1. Ollama runs locally on port 11434
-2. First run takes longer (loading model)
-3. Subsequent runs are faster (model cached)
-4. No API key needed for Ollama version
-5. All processing happens on your machine
+2. Streamlit web app runs on http://localhost:8501
+3. First run takes longer (loading model)
+4. Subsequent runs are faster (model cached)
+5. No API key needed for Ollama version
+6. All processing happens on your machine
+
+## 🌐 Deployment (Optional)
+
+You can deploy the Streamlit app for free:
+
+### Streamlit Cloud (Easiest)
+1. Push code to GitHub
+2. Go to https://share.streamlit.io
+3. Connect your GitHub repository
+4. Select `streamlit_app.py`
+5. Deploy!
+6. Get a public URL to share
+
+### Other Options
+- Heroku (free tier may have changed)
+- Railway (free tier available)
+- AWS (various free options)
 
 ## 📞 Support
 
@@ -176,6 +247,7 @@ For issues:
 2. Verify model is downloaded: `ollama list`
 3. Check dependencies: `pip list`
 4. Review error messages carefully
+5. Check that Streamlit is installed: `pip install streamlit`
 
 ## 📄 License
 
@@ -186,7 +258,14 @@ MIT License - Feel free to use this for personal or commercial projects
 Your Name
 your.email@example.com
 
+## 🙏 Acknowledgments
+
+- Ollama team for local LLM execution
+- Mistral team for excellent open-source model
+- Anthropic for Claude API reference
+- Streamlit team for amazing web framework
+
 ---
 
 **Last Updated:** 2024
-**Version:** 1.0.0
+**Version:** 2.0.0 (Added Streamlit web interface)
